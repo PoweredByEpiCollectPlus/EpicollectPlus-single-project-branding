@@ -1,5 +1,7 @@
-# EpiCollect+ Mobile Client HTML5
-Epicollect+  Mobile Client based on HTML5
+# EpiCollect+ Single Project Branding
+Epicollect+ Mobile Client HTML5 modified to be a framework for building a branded version with its own graphics and logos and working with a single specified project (loading the xml locally). 
+The app can have whatever name, just the package name needs to be unique for distribution on the Android Play Store or iOS App Store. The app will neeed to be signed with a proper valid certificate for distribution
+The project to be used can be create on Epicollect+ server and downloaded locally
 
 ## Dependencies
 - Cordova CLI 5.0 resolving to Cordova 3.8 on iOS and Cordova 4.0.0 on Android
@@ -15,10 +17,10 @@ Epicollect+  Mobile Client based on HTML5
 Clone repo (png resources were added manually using `git add res/ios/*.png -f`)
 
 ####
-Add Android using Cordova CLI
+Add Android using Cordova CLI `cordova platform add android` adn iOS `cordova platform add ios`
 
 ####
-Plugins dependencies are added automatically via Cordova hooks when adding Android
+Plugins dependencies are added automatically via Cordova hooks when adding Android (see `hooks` folder)
 
 ####
 Copy `res/android/` files to proper folder under `platform/android`
@@ -37,6 +39,13 @@ Fix deployment info, Java import ect. if needed
 
 ####
 Update Android Manifest file, see the one on Epicollect5 repo
+
+####
+Icons and graphics are copied automatically when running `cordova prepare`, so just replace the existing one with the one you want to use.
+In `res/graphics/sources` the are the source files to create the icons and logo  with correct size.
+
+####
+Modify config.xml to add the custom app details like name, package name etc...
 
 ####
 Run on device
