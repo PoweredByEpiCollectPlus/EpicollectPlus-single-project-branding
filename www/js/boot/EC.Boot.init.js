@@ -46,7 +46,7 @@ EC.Boot.init = function () {
     }
 
     //check if we are launching a new instance of the app on the device
-    if (!window.sessionStorage.app_loaded && !EC.Utils.isChrome()) {
+    if (!window.localStorage.is_db_set && !EC.Utils.isChrome()) {
         window.localStorage.clear();
     }
 
