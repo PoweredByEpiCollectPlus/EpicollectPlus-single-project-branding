@@ -6,25 +6,58 @@ EC.Boot = EC.Boot || {};
 EC.Boot.getProjects = function () {
     'use strict';
 
-    //if database already set, just list projects
-    if (window.localStorage.is_db_set) {
-        console.log('getting list');
-        EC.Project.getList();
+    var prefs = window.plugins.appPreferences;
+
+    function _isProjectLoaded() {
+
+        var deferred = new $.Deferred();
+
+        function ok(value) {
+            deferred.resolve(true);
+        }
+
+        function fail(error) {
+            console.log(error);
+            deferred.resolve(false);
+        }
+
+        // fetch value by key (value will be delivered through "ok" callback)
+        prefs.fetch(ok, fail, 'is_db_set');
+
+        return deferred.promise();
     }
-    else {
 
-        EC.Notification.showProgressDialog();
+    //check if local project is loaded already
+    $.when(_isProjectLoaded()).then(function (response) {
 
-        //Initialise database BEFORE listing empty project view
-        $.when(EC.DBAdapter.init()).then(function () {
+        if (response) {
+            //if project already set, just list projects
+            EC.Project.getList();
+        }
+        else {
 
-            //generate project from local project xml
-            $.when(EC.Boot.createSingleProject()).then(function () {
-                //database is set
-                window.localStorage.is_db_set = 1;
-                EC.Notification.hideProgressDialog();
-                EC.Project.getList();
+            EC.Notification.showProgressDialog();
+
+            //Initialise database BEFORE creating project
+            $.when(EC.DBAdapter.init()).then(function () {
+
+                //generate project from local project xml
+                $.when(EC.Boot.createSingleProject()).then(function () {
+
+                    function success(value) {
+                        console.log('project created');
+                    }
+
+                    function error(the_error) {
+                        console.log(the_error);
+                    }
+
+                    //database is set
+                    prefs.store(success, error, 'is_db_set', '1');
+                    EC.Notification.hideProgressDialog();
+                    EC.Project.getList();
+                });
             });
-        });
-    }
-}
+        }
+    });
+};

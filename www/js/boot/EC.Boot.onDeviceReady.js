@@ -105,6 +105,7 @@ EC.Boot.onDeviceReady = function () {
 
     EC.db = EC.Utils.openDatabase();
 
+
     //Deal with JQM page events
     EC.Routing.indexPageEvents();
     EC.Routing.inputsPageEvents();
