@@ -55,6 +55,24 @@ function puts(error, stdout, stderr) {
     sys.puts(stdout);
 }
 
+
+//pluginlist.forEach(function (plug) {
+//    exec('cordova plugin add ' + plug, puts);
+//});
+
+//install plugin with a delay to avoid race conditions when plugins are added in parallel.
+//not the best solution but for the time being it will do
+//(function installPlugin(i) {
+//    'use strict';
+//    setTimeout(function () {
+//        exec('cordova plugin add ' + pluginlist[i], puts); //  your code here
+//        if (--i) {
+//            installPlugin(i);
+//        }      //  decrement i and call installPlugin again if i > 0
+//    }, 7000);
+//})(pluginlist.length);
+
+
 function installPlugin() {
     'use strict';
 
@@ -69,3 +87,5 @@ function installPlugin() {
 }
 
 installPlugin();
+
+
