@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ecml version="1">
+    <model>
+        <submission id="bestpint" projectName="Bestpint" allowDownloadEdits="false" versionNumber="2.1"/>
+        <uploadToServer>http://plus.epicollect.net/Bestpint/upload</uploadToServer>
+        <downloadFromServer>http://plus.epicollect.net/Bestpint/download</downloadFromServer>
+    </model>
+
+    <form num="1" name="Place" key="Place_key" main="true">
+        <input ref="Place_key" required="true" display="false" genkey="true">
+            <label>Unique ID</label>
+        </input>
+        <select1 ref="ecplus_Place_ctrl4" required="true">
+            <label>Type of place?</label>
+            <item>
+                <label>Pub</label>
+                <value>1</value>
+            </item>
+            <item>
+                <label>Bar</label>
+                <value>2</value>
+            </item>
+            <item>
+                <label>Festival</label>
+                <value>3</value>
+            </item>
+            <item>
+                <label>Exhibition</label>
+                <value>4</value>
+            </item>
+            <item>
+                <label>Brewery</label>
+                <value>5</value>
+            </item>
+            <item>
+                <label>Other</label>
+                <value>6</value>
+            </item>
+        </select1>
+        <input ref="ecplus_Place_ctrl2" required="true" title="true">
+            <label>Name of the place</label>
+        </input>
+        <photo ref="ecplus_Place_ctrl6">
+            <label>Photo of the place (optional)</label>
+        </photo>
+        <location ref="ecplus_Place_ctrl3">
+            <label>Your location</label>
+        </location>
+        <textarea ref="ecplus_Place_ctrl5">
+            <label>Any comments?</label>
+        </textarea>
+    </form>
+    <form num="2" name="Beer" key="Beer_key" main="true">
+        <input ref="Place_key">
+            <label>Unique ID</label>
+        </input>
+        <input ref="Beer_key" required="true" display="false" genkey="true">
+            <label>Unique ID</label>
+        </input>
+        <input ref="ecplus_Beer_ctrl3" required="true" title="true">
+            <label>Name of beer</label>
+        </input>
+        <input ref="ecplus_Beer_ctrl12" title="true">
+            <label>Brewery (optional)</label>
+        </input>
+        <radio ref="ecplus_Beer_ctrl4">
+            <label>Type of beer</label>
+            <item>
+                <label>Ale</label>
+                <value>1</value>
+            </item>
+            <item>
+                <label>Pale Ale</label>
+                <value>2</value>
+            </item>
+            <item>
+                <label>Stout</label>
+                <value>3</value>
+            </item>
+            <item>
+                <label>Porter</label>
+                <value>4</value>
+            </item>
+            <item>
+                <label>Lager</label>
+                <value>5</value>
+            </item>
+            <item>
+                <label>Other</label>
+                <value>6</value>
+            </item>
+        </radio>
+        <photo ref="ecplus_Beer_ctrl9">
+            <label>Photo of beer</label>
+        </photo>
+        <radio ref="ecplus_Beer_ctrl5">
+            <label>How would you rate it?</label>
+            <item>
+                <label>1 Star</label>
+                <value>1</value>
+            </item>
+            <item>
+                <label>2 Stars</label>
+                <value>2</value>
+            </item>
+            <item>
+                <label>3 Stars</label>
+                <value>3</value>
+            </item>
+            <item>
+                <label>4 Stars</label>
+                <value>4</value>
+            </item>
+            <item>
+                <label>5 Stars</label>
+                <value>5</value>
+            </item>
+        </radio>
+        <radio ref="ecplus_Beer_ctrl10" required="true">
+            <label>Price range</label>
+            <item>
+                <label>Expensive</label>
+                <value>1</value>
+            </item>
+            <item>
+                <label>Average</label>
+                <value>2</value>
+            </item>
+            <item>
+                <label>Cheap</label>
+                <value>3</value>
+            </item>
+        </radio>
+        <input ref="ecplus_Beer_ctrl11">
+            <label>Cost and currency (optional)</label>
+        </input>
+        <textarea ref="ecplus_Beer_ctrl8">
+            <label>Any comments?</label>
+        </textarea>
+    </form>
+</ecml>

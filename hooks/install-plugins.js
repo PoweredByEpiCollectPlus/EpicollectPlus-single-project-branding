@@ -1,4 +1,4 @@
-//#!/usr/bin/env node
+#!/usr/bin/env node
 //this hook installs all your plugins
 // add your plugins to this list--either the identifier, the filesystem location
 // or the URL
@@ -55,6 +55,17 @@ function puts(error, stdout, stderr) {
     sys.puts(stdout);
 }
 
-pluginlist.forEach(function (plug) {
-    exec('cordova plugin add ' + plug, puts);
-});
+function installPlugin() {
+    'use strict';
+
+    var plugin = pluginlist.pop();
+    console.log('Installing plugin from: ' + plugin);
+    exec('cordova plugin add ' + plugin, function(error, stdout, stderr) {
+        console.log(stdout);
+        if (pluginlist.length > 0) {
+            installPlugin();
+        }
+    });
+}
+
+installPlugin();

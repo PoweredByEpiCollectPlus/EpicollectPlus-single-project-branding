@@ -90,6 +90,11 @@
         <hook
                 src="hooks/install-plugins.js"
                 type="after_platform_add"/>
+
+        <hook
+                src="hooks/update_platform_config.js"
+                type="after_prepare"/>
+
         <!-- Android icons and splash screens -->
         <icon
                 density="mdpi"
@@ -132,5 +137,7 @@
         <preference
                 name="AndroidLaunchMode"
                 value="singleTask"/>
+
+        <preference name="android-theme" value="Theme.Holo.Light.NoActionBar"/>
     </platform>
 </widget>

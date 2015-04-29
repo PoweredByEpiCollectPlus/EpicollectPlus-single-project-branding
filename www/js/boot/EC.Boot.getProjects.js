@@ -7,19 +7,29 @@ EC.Boot.getProjects = function () {
     'use strict';
 
     //if database already set, just list projects
-    if (window.localStorage.is_db_set === EC.Const.SET) {
+    if (window.localStorage.is_db_set) {
         console.log('getting list');
         EC.Project.getList();
     }
     else {
 
+        EC.Notification.hideProgressDialog();
+
         //Initialise database BEFORE listing empty project view
         $.when(EC.DBAdapter.init()).then(function () {
 
-            //database is set
-            window.localStorage.is_db_set = '1';
-            window.localStorage.stress_test = 1;
-            EC.Project.getList();
+
+            //generate project from local project xml
+            $.when(EC.Boot.createSingleProject()).then(function () {
+
+                //database is set
+                window.localStorage.is_db_set = 1;
+                //window.localStorage.stress_test = 1;
+                EC.Project.getList();
+
+            });
+
+
         });
     }
 }
