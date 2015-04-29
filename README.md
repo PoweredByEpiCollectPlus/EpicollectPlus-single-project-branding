@@ -26,9 +26,6 @@ Plugins dependencies are added automatically via Cordova hooks when adding Andro
 Copy `res/android/` files to proper folder under `platform/android`
 
 ####
-Change `android:theme` attribute to `android:theme="@style/Theme.Epicollect5"` 
-
-####
 Run `cordova prepare` to copy file per each platform
 
 ####
@@ -38,7 +35,8 @@ Open project in Android Studio (Android) or Xcode (iOS)
 Fix deployment info, Java import ect. if needed
 
 ####
-Update Android Manifest file, see the one on Epicollect5 repo
+Update Android Manifest file, change default theme to Holo Light
+` android:theme="@android:style/Theme.Holo.Light.NoActionBar"`
 
 ####
 Icons and graphics are copied automatically when running `cordova prepare`, so just replace the existing one with the one you want to use.
@@ -51,7 +49,7 @@ Modify config.xml to add the custom app details like name, package name etc...
 Run on device
 
 ####
-Look for log errors about missing plugins (iOS) and fix
+Look for log errors about missing plugins and fix (I am looking inot this but no solution so far)
 
 ####
 Cordova statusbar plugin (iOS) is causing problems so it does not get installed, modify `MainViewController.m` directly instead. Replace the `viewDidLoad()` method with the following:

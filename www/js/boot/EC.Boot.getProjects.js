@@ -13,23 +13,18 @@ EC.Boot.getProjects = function () {
     }
     else {
 
-        EC.Notification.hideProgressDialog();
+        EC.Notification.showProgressDialog();
 
         //Initialise database BEFORE listing empty project view
         $.when(EC.DBAdapter.init()).then(function () {
 
-
             //generate project from local project xml
             $.when(EC.Boot.createSingleProject()).then(function () {
-
                 //database is set
                 window.localStorage.is_db_set = 1;
-                //window.localStorage.stress_test = 1;
+                EC.Notification.hideProgressDialog();
                 EC.Project.getList();
-
             });
-
-
         });
     }
 }
