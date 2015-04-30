@@ -8,11 +8,15 @@ EC.Boot.getProjects = function () {
 
     var prefs = window.plugins.appPreferences;
 
-    function _isProjectLoaded() {
+    /** we check if the db is ready on the device already searching for a flag in user preferences,
+     *  which is file based and native to the platform via the plugin appPreferences
+     */
+    function _isDBSet() {
 
         var deferred = new $.Deferred();
 
         function ok(value) {
+            //database is set
             deferred.resolve(true);
         }
 
@@ -27,11 +31,11 @@ EC.Boot.getProjects = function () {
         return deferred.promise();
     }
 
-    //check if local project is loaded already
-    $.when(_isProjectLoaded()).then(function (response) {
+    //check if database is set already
+    $.when(_isDBSet()).then(function (response) {
 
         if (response) {
-            //if project already set, just list projects
+            //if db already set, just list projects
             EC.Project.getList();
         }
         else {
@@ -41,7 +45,7 @@ EC.Boot.getProjects = function () {
             //Initialise database BEFORE creating project
             $.when(EC.DBAdapter.init()).then(function () {
 
-                //generate project from local project xml
+                //generate project from local project xml ('www/xml/<project_name>.xml')
                 $.when(EC.Boot.createSingleProject()).then(function () {
 
                     function success(value) {
@@ -52,7 +56,7 @@ EC.Boot.getProjects = function () {
                         console.log(the_error);
                     }
 
-                    //database is set
+                    //database is set, remember it and list project
                     prefs.store(success, error, 'is_db_set', '1');
                     EC.Notification.hideProgressDialog();
                     EC.Project.getList();

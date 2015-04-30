@@ -59,6 +59,19 @@
         <photo ref="ecplus_Beer_ctrl7">
             <label>Take a photo of the beer!</label>
         </photo>
+        <radio ref="ecplus_Beer_ctrl14">
+            <label>How would you rate it?</label>
+            <item><label>Excellent</label>
+                <value>1</value>
+            </item><item><label>Good</label>
+            <value>2</value>
+        </item><item><label>Average</label>
+            <value>3</value>
+        </item><item><label>Fair</label>
+            <value>4</value>
+        </item><item><label>Poor</label>
+            <value>5</value>
+        </item></radio>
         <radio ref="ecplus_Beer_ctrl11">
             <label>How is the price range?</label>
             <item><label>Expensive</label>
