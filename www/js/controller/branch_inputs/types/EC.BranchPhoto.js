@@ -9,12 +9,10 @@ EC.BranchInputTypes = (function (module) {
 
     module.photo = function (the_value, the_input) {
 
-        var obj;
         var span_label = $('div#branch-photo span.label');
         var value = the_value;
         var input = the_input;
         var camera_btn = $('div#branch-input-photo div#camera-btn');
-        // var thumbnail = $('img#image_thumbnail');
         var store_image_uri = $('div#branch-input-photo input#stored-image-uri');
         var cache_image_uri = $('div#branch-input-photo input#cached-image-uri');
         var image_full_path_uri;
@@ -191,6 +189,7 @@ EC.BranchInputTypes = (function (module) {
 
                 store_image_uri.val(value.stored);
             }
+
         }
         else {
             //clear any previous stored path in the DOM, otherwise it get cached and it causes the same image to be overriden when adding a new entry
