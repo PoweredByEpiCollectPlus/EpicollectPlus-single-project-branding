@@ -30,8 +30,8 @@ var pluginlist = [
     'com.phonegap.plugins.barcodescanner',
 //App Version
     'https://github.com/whiteoctober/cordova-plugin-app-version.git', //
-//status bar in ios7 -> currently causing problems, so I modified the MainViewController directly
-//'org.apache.cordova.statusbar',
+//status bar
+'org.apache.cordova.statusbar',
 //video player plugin android
     'https://github.com/macdonst/VideoPlayer',
 //diagnostic plugin

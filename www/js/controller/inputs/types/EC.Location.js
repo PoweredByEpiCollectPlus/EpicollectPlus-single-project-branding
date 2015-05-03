@@ -12,10 +12,13 @@ EC.InputTypes = (function (module) {
         var span_label = $('span.label');
         var value = the_value;
         var input = the_input;
-        var attempts = 10;
         var requests = [];
         var geolocation_request;
         var is_first_attempt = true;
+
+        //set unlimited timeout for watch position to avoid timeout error on iOS when the device does not move
+        // see http://goo.gl/tYsBSC, http://goo.gl/jYQhgr, http://goo.gl/8oR1g2
+        var timeout = (window.device.platform === EC.Const.IOS) ? Infinity : 30000;
 
         //update label text
         span_label.text(input.label);
@@ -75,7 +78,7 @@ EC.InputTypes = (function (module) {
             if (is_first_attempt) {
                 geolocation_request = navigator.geolocation.watchPosition(onGCPSuccess, onGCPError, {
                     maximumAge: 0,
-                    timeout: 30000,
+                    timeout: timeout,
                     enableHighAccuracy: true
                 });
             }
@@ -98,7 +101,7 @@ EC.InputTypes = (function (module) {
                 //not only when requesting it. Do thjis when user wants to improve location
                 geolocation_request = navigator.geolocation.watchPosition(onGCPSuccess, onGCPError, {
                     maximumAge: 0,
-                    timeout: 30000,
+                    timeout: timeout,
                     enableHighAccuracy: true
                 });
             }
@@ -108,7 +111,7 @@ EC.InputTypes = (function (module) {
 
             set_location_btn.off('vclick');
             requests = [];
-            attempts = 10;
+
 
             //check id GPS is enabled on the device
             $.when(EC.Utils.isGPSEnabled()).then(function () {
@@ -175,7 +178,9 @@ EC.InputTypes = (function (module) {
             console.log(JSON.stringify(error));
 
             if (error.code === 3) {
-                EC.Notification.showAlert(EC.Localise.getTranslation('error'), error.message + EC.Localise.getTranslation('location_fail'));
+                //EC.Notification.showAlert(EC.Localise.getTranslation('error'), error.message + EC.Localise.getTranslation('location_fail'));
+                window.navigator.geolocation.clearWatch(geolocation_request);
+                EC.Notification.hideProgressDialog();
 
             } else if (error.code === 1) {
 
