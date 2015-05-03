@@ -16,8 +16,24 @@ EC.Boot.getProjects = function () {
         var deferred = new $.Deferred();
 
         function ok(value) {
-            //database is set
-            deferred.resolve(true);
+
+            console.log('value is: ' + value);
+            console.log(typeof value);
+            console.log(value);
+
+            if (window.device.platform === EC.Const.IOS) {
+
+                if (typeof value === 'object') {
+                    deferred.resolve(false);
+                }
+                else {
+                    deferred.resolve(true);
+                }
+            }
+            else {
+                //database is set
+                deferred.resolve(true);
+            }
         }
 
         function fail(error) {
@@ -31,7 +47,7 @@ EC.Boot.getProjects = function () {
         return deferred.promise();
     }
 
-    //check if database is set already
+//check if database is set already
     $.when(_isDBSet()).then(function (response) {
 
         if (response) {
