@@ -13,6 +13,7 @@ EC.Forms = (function (module) {
         var ctx_menu_btn = $('div#forms div[data-role="header"] div.ui-btn-right[data-href="project-options"]');
         var inactive_tab = $('div#forms div[data-role="header"] div[data-role="navbar"] ul li.inactive-tab');
         var settings_btn = $('div#forms div[data-role="header"] div#form-nav-drawer ul li div[data-href="settings"]');
+        var open_map_btn = $('div#forms div[data-role="header"] div#form-nav-drawer ul li div[data-href="map"]');
 
         //bind left sidebar open/close
         nav_drawer_btn.off().on('vclick', function (e) {
@@ -30,6 +31,10 @@ EC.Forms = (function (module) {
             // //bind add project button (action bar)
             settings_btn.off().one('vclick', function (e) {
                 EC.Routing.changePage(EC.Const.SETTINGS_VIEW);
+            });
+
+            open_map_btn.off().on('vclick', function () {
+                window.open('http://www.bestpint.net/map', '_system');
             });
 
             //Closing panel globally: there is bug (panel does not close tapping off the panel) using the built in jqm methods, so this hack is needed

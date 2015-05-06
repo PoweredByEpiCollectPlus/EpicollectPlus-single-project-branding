@@ -42,6 +42,7 @@ EC.Entries = (function (module) {
         var inactive_tab = $('div#entry-values div[data-role="header"] div[data-role="navbar"] ul li.inactive-tab');
         var entry_value_btn = $('div#entry-values div#entry-values-list ul');
         var input_page_href = window.localStorage.input_page_href;
+        var open_map_btn = $('div#entry-values div[data-role="header"] div#entry-values-nav-drawer ul li div[data-href="map"]');
 
         //get hold of unsync button
         unsync_entry_btn = $('div#entry-values div.entry-values-options ul li#unsync-entry');
@@ -64,6 +65,10 @@ EC.Entries = (function (module) {
             settings_btn.off().one('vclick', function (e) {
                 window.localStorage.reached_settings_view_from = $.mobile.activePage.attr('id');
                 EC.Routing.changePage(EC.Const.SETTINGS_VIEW);
+            });
+
+            open_map_btn.off().on('vclick', function () {
+                window.open('http://www.bestpint.net/map', '_system');
             });
 
             //Closing panel globally: there is bug (panel does not close tapping off the panel) using the built in jqm methods, so this hack is needed
