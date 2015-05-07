@@ -1,6 +1,10 @@
 # Powered By Epicollect+ - Mobile Client
-Epicollect+ Mobile Client HTML5 modified to be a framework for building a branded version with its own graphics and logos and working with a single specified project (loading the xml locally from `www/xml/{project name}.xml`). 
-The app can have whatever name, just the package name needs to be unique for distribution on the Android Play Store or iOS App Store. The app will neeed to be signed with a proper valid certificate for distribution
+Epicollect+ Mobile Client HTML5 modified to be a framework for building a branded version with its own graphics and logos and working with a single specified project (loading the xml locally from `www/xml/{project name}.xml`).
+
+The app can have whatever name, just the package name needs to be unique for distribution on the Android Play Store or iOS App Store. 
+
+The app will neeed to be signed with a proper valid certificate for distribution
+
 The project to be used can be create on <a href="http://plus.epicollect.net/">Epicollect+</a> server and downloaded locally
 
 ## Dependencies
