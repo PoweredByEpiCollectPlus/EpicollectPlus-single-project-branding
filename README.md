@@ -1,7 +1,7 @@
-# EpiCollect+ Single Project Branding
-Epicollect+ Mobile Client HTML5 modified to be a framework for building a branded version with its own graphics and logos and working with a single specified project (loading the xml locally). 
+# Powered By Epicollect+ - Mobile Client
+Epicollect+ Mobile Client HTML5 modified to be a framework for building a branded version with its own graphics and logos and working with a single specified project (loading the xml locally from `www/xml/{project name}.xml`). 
 The app can have whatever name, just the package name needs to be unique for distribution on the Android Play Store or iOS App Store. The app will neeed to be signed with a proper valid certificate for distribution
-The project to be used can be create on Epicollect+ server and downloaded locally
+The project to be used can be create on <a href="http://plus.epicollect.net/">Epicollect+</a> server and downloaded locally
 
 ## Dependencies
 - Cordova CLI 5.0 resolving to Cordova 3.8 on iOS and Cordova 4.0.0 on Android
@@ -35,10 +35,6 @@ Open project in Android Studio (Android) or Xcode (iOS)
 Fix deployment info, Java import ect. if needed
 
 ####
-Update Android Manifest file, change default theme to Holo Light
-` android:theme="@android:style/Theme.Holo.Light.NoActionBar"`
-
-####
 Icons and graphics are copied automatically when running `cordova prepare`, so just replace the existing one with the one you want to use.
 In `res/graphics/sources` the are the source files to create the icons and logo  with correct size.
 
@@ -49,37 +45,5 @@ Modify config.xml to add the custom app details like name, package name etc...
 Run on device
 
 ####
-Look for log errors about missing plugins and fix (I am looking inot this but no solution so far)
+Look for log errors about missing plugins and fix (I am looking into this...)
 
-####
-Cordova statusbar plugin (iOS) is causing problems so it does not get installed, modify `MainViewController.m` directly instead. Replace the `viewDidLoad()` method with the following:
-
-
-    ```
-    - (void)viewDidLoad
-     {
-         [super viewDidLoad];
-         // Do any additional setup after loading the view from its nib.
-     
-         //Lower screen 20px on ios7: http://goo.gl/hoijax
-         //this is done here as viewDidLoad will be executed only once (what you actually want)
-         //while viewWillAppear is executed EVERY time this view is shown/presented to the user
-         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-            CGRect viewBounds = [self.webView bounds];
-            viewBounds.origin.y = 18;
-            viewBounds.size.height = viewBounds.size.height -18;
-            self.webView.frame = viewBounds;
-        }
-     
-    }
-    ```
-
-
-####
-Custom URL schemes need to be added manually to Android manifest and iOS plist files (if you want to deeplink your app to a web page, otherwise you can skip this)
-
-    iOS: http://goo.gl/SPLNo
-    Android: `todo`
-
-####
-Currently using 4.0.0 on Android, where jsHybugger (debugging tool) does not work. It would work on 3.7.0 but Eclipse does not compile the project (missing .jar). To debug Android <4.4, clone repo, use to 3.7 and debug there. Make the changes to the main repo manually.
