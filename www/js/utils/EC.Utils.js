@@ -842,6 +842,21 @@ EC.Utils = (function () {
 
     };
 
+    var getAppName = function () {
+
+        var app_name;
+        var deferred = new $.Deferred();
+
+        cordova.getAppVersion.getAppName(function (the_app_name) {
+            console.log('App name ' + the_app_name);
+            app_name = the_app_name;
+            deferred.resolve(app_name);
+        });
+
+        return deferred.promise();
+
+    };
+
     //get absolute path for page urls
     var getPageBaseURI = function () {
 
@@ -1358,6 +1373,7 @@ EC.Utils = (function () {
         changeHashNavigationDirection: changeHashNavigationDirection,
         inArray: inArray,
         getVersionName: getVersionName,
+        getAppName: getAppName,
         getPageBaseURI: getPageBaseURI,
         isValidValue: isValidValue,
         setIOSRootPath: setIOSRootPath,

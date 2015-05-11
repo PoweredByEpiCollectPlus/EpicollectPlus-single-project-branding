@@ -4,10 +4,15 @@ var EC = window.EC || {};
 EC.Boot = EC.Boot || {};
 
 EC.Boot.onDeviceReady = function () {
-
     'use strict';
 
     if (!EC.Utils.isChrome()) {
+
+        //show app name as title (useful for debug only),
+        $.when(EC.Utils.getAppName()).then(function (the_app_name) {
+            console.log('App name: ' + the_app_name);
+            document.title = the_app_name;
+        });
 
         console.log('OS version: ' + window.device.version);
 
@@ -25,9 +30,7 @@ EC.Boot.onDeviceReady = function () {
 
                 //cache persistent storage path
                 EC.Utils.setIOSPersistentStoragePath();
-
             });
-
         }
 
         if (window.device.platform === EC.Const.ANDROID) {

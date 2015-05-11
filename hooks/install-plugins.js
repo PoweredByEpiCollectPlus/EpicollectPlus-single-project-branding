@@ -29,7 +29,7 @@ var pluginlist = [
 //Barcode scanner ZXing
     'com.phonegap.plugins.barcodescanner',
 //App Version
-    'https://github.com/whiteoctober/cordova-plugin-app-version.git', //
+    'https://github.com/mirko77/cordova-plugin-app-version.git', //
 //status bar in ios7
     'org.apache.cordova.statusbar',
 //video player plugin android

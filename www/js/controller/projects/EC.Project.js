@@ -6,26 +6,28 @@
  */
 var EC = EC || {};
 EC.Project = EC.Project || {};
-EC.Project = ( function () {
-    "use strict";
+EC.Project = (function () {
+    'use strict';
 
-    var project_xml_URL = "";
-    var input_options = [];
+    var project_xml_URL = '';
     var projects = [];
-    var epicollect_server_url;
-    var self;
 
     var _bindActionBarBtns = function () {
 
-        var nav_drawer_btn = $("div#index div[data-role='header'] div[data-href='home-settings']");
-        var add_project_btn = $("div#index div[data-role='header'] div.ui-btn-right[data-href='add-project']");
-        var settings_btn = $("div.home-settings ul li div[data-href='settings']");
-        var open_map_btn = $("div.home-settings ul li div[data-href='map']");
+        var nav_drawer_btn = $('div#index div[data-role="header"] div[data-href="home-settings"]');
+        var add_project_btn = $('div#index div[data-role="header"] div.ui-btn-right[data-href="add-project"]');
+        var settings_btn = $('div.home-settings ul li div[data-href="settings"]');
+        var open_map_btn = $('div.home-settings ul li div[data-href="map"]');
+
+        //set app name in nav drawer (top left)
+        $.when(EC.Utils.getAppName()).then(function (the_app_name) {
+            nav_drawer_btn.find('span.app-name').text(the_app_name);
+        });
 
         //bind left sidebar open/close
         nav_drawer_btn.off().on('vclick', function (e) {
 
-            //we are using a class instead of an id because there is a bug with the panel not working when navigating the app
+            //we are using a class instead of an id because there is a bug with the panel not working when navigating the app (duplicated ids?)
             var panel = $('.home-settings');
 
             panel.panel('open');
@@ -47,7 +49,7 @@ EC.Project = ( function () {
 
         //bind add project button (action bar)
         add_project_btn.off().one('vclick', function (e) {
-            window.localStorage.back_nav_url = "#refresh";
+            window.localStorage.back_nav_url = '#refresh';
             EC.Routing.changePage(EC.Const.ADD_PROJECT_VIEW);
         });
 
@@ -60,16 +62,16 @@ EC.Project = ( function () {
         var project_to_autoload = window.decodeURI(the_project_to_autoload);
         var project_name;
         var deferred = new $.Deferred();
-        var project_params = project_to_autoload.split("/");
+        var project_params = project_to_autoload.split('/');
 
         //parse project name from full project xml url
         project_name = project_params[project_params.length - 1];
-        project_name = project_name.split(".");
+        project_name = project_name.split('.');
         project_name = project_name[0];
 
         //There is a project to autoload: warn user if the project is already loaded on
         // the device
-        console.log("Project names **************************************");
+        console.log('Project names **************************************');
         console.log(JSON.stringify(project_names));
         if (EC.Utils.inArray(project_names, project_name, false)) {
             deferred.reject();
@@ -81,8 +83,8 @@ EC.Project = ( function () {
 
                 //testing on Chrome?
                 if (EC.Utils.isChrome()) {
-                    console.log("Testing on Chrome *****************************");
-                    project_xml_URL = "xml/" + project_name + ".xml";
+                    console.log('Testing on Chrome *****************************');
+                    project_xml_URL = 'xml/' + project_name + '.xml';
                 }
 
                 project_xml_URL = project_to_autoload;
@@ -102,7 +104,7 @@ EC.Project = ( function () {
 
             }
             else {
-                EC.Notification.showAlert(EC.Localise.getTranslation("error"), EC.Localise.getTranslation("connection_lost"));
+                EC.Notification.showAlert(EC.Localise.getTranslation('error'), EC.Localise.getTranslation('connection_lost'));
                 deferred.reject();
             }
         }
@@ -113,7 +115,7 @@ EC.Project = ( function () {
     function getList() {
 
         //@bug in Chrome where this function is called twice, I have no idea why
-        console.log("EC.Project.getList() called ***********************************");
+        console.log('EC.Project.getList() called ***********************************');
 
         var self = this;
         var project_to_autoload;
@@ -121,13 +123,13 @@ EC.Project = ( function () {
         var project_xml_URL;
 
         //remove cached project names
-        // window.localStorage.removeItem("project_names");
+        // window.localStorage.removeItem('project_names');
 
         //remove cached current view
-        window.localStorage.removeItem("current_view_url");
+        window.localStorage.removeItem('current_view_url');
 
         //clear project upload URL
-        window.localStorage.removeItem("upload_URL");
+        window.localStorage.removeItem('upload_URL');
 
         //load a project from custom URL scheme on device?
         if (!EC.Utils.isChrome()) {
@@ -155,10 +157,10 @@ EC.Project = ( function () {
                 }
             }
             window.localStorage.project_names = JSON.stringify(project_names);
-            console.log("Window Project names **************************************");
+            console.log('Window Project names **************************************');
             console.log(JSON.stringify(window.localStorage.project_names));
 
-            if (project_to_autoload === "") {
+            if (project_to_autoload === '') {
 
                 //no project to autoload? we are done, sho list of projects on the device
                 if (projects.length > 0) {
@@ -172,7 +174,7 @@ EC.Project = ( function () {
             else {
 
                 //show loader we are requesting a project automatically
-                EC.Notification.showProgressDialog(EC.Localise.getTranslation("wait"), EC.Localise.getTranslation("loading_project") + "/n" + project_to_autoload);
+                EC.Notification.showProgressDialog(EC.Localise.getTranslation('wait'), EC.Localise.getTranslation('loading_project') + '/n' + project_to_autoload);
 
                 $.when(_autoload(project_to_autoload)).then(function () {
 
@@ -185,7 +187,7 @@ EC.Project = ( function () {
                     });
 
                     //remove project from localStorage (iOS only)
-                    window.localStorage.autoload_project_url = "";
+                    window.localStorage.autoload_project_url = '';
 
                     EC.Notification.hideProgressDialog();
                     //add new project to render
@@ -194,12 +196,12 @@ EC.Project = ( function () {
                 }, function () {
                     //we get here when trying to autoload a project already on the device, just
                     // render stored projects
-                    EC.Notification.showAlert(EC.Localise.getTranslation("error"), EC.Localise.getTranslation("project_already_loaded"));
+                    EC.Notification.showAlert(EC.Localise.getTranslation('error'), EC.Localise.getTranslation('project_already_loaded'));
                     EC.Notification.hideProgressDialog();
                     self.renderList(projects);
 
                     //remove project from localStorage (iOS only)
-                    window.localStorage.ios_project_form_url = "";
+                    window.localStorage.ios_project_form_url = '';
                 });
 
             }
@@ -212,7 +214,7 @@ EC.Project = ( function () {
 
         var project_names = [];
         //build HTML
-        var HTML = "";
+        var HTML = '';
         var i;
         var iLength;
         var dom_list = $('div#project-list ul');
@@ -255,12 +257,12 @@ EC.Project = ( function () {
         dom_list.listview('refresh');
 
         //remove navigation flags
-        window.localStorage.removeItem("current_position");
-        window.localStorage.removeItem("form_id");
-        window.localStorage.removeItem("form_name");
-        window.localStorage.removeItem("project_id");
-        window.localStorage.removeItem("project_name");
-        window.localStorage.removeItem("form_tree");
+        window.localStorage.removeItem('current_position');
+        window.localStorage.removeItem('form_id');
+        window.localStorage.removeItem('form_name');
+        window.localStorage.removeItem('project_id');
+        window.localStorage.removeItem('project_name');
+        window.localStorage.removeItem('form_tree');
 
         //Localise
         if (window.localStorage.DEVICE_LANGUAGE !== EC.Const.ENGLISH) {
@@ -268,10 +270,10 @@ EC.Project = ( function () {
         }
 
         window.setTimeout(function () {
-            $("body").removeClass("not-shown");
+            $('body').removeClass('not-shown');
         }, 500);
 
-        console.log("Language set to " + window.localStorage.DEVICE_LANGUAGE);
+        console.log('Language set to ' + window.localStorage.DEVICE_LANGUAGE);
 
     }//renderList
 
@@ -294,11 +296,11 @@ EC.Project = ( function () {
         $('div#index div#empty-list').show();
 
         window.setTimeout(function () {
-            $("body").removeClass("not-shown");
+            $('body').removeClass('not-shown');
         }, 500);
 
         //load a project from custom URL scheme?
-        console.log("project to be loaded = " + EC.Utils.getParameterByName('project'));
+        console.log('project to be loaded = ' + EC.Utils.getParameterByName('project'));
 
         EC.Notification.hideProgressDialog();
 
@@ -316,13 +318,13 @@ EC.Project = ( function () {
         // from working
         $.when(EC.Delete.deleteProject(project_id, project_name)).then(function () {
 
-            EC.Notification.showToast(EC.Localise.getTranslation("project_deleted"), "short");
+            EC.Notification.showToast(EC.Localise.getTranslation('project_deleted'), 'short');
             window.localStorage.is_project_deleted = 1;
-            window.localStorage.back_nav_url = "#refresh";
+            window.localStorage.back_nav_url = '#refresh';
             EC.Routing.changePage(EC.Const.INDEX_VIEW);
 
         }, function () {
-            EC.Notification.showAlert(EC.Localise.getTranslation("error"), EC.Localise.getTranslation("generic_error"));
+            EC.Notification.showAlert(EC.Localise.getTranslation('error'), EC.Localise.getTranslation('generic_error'));
         });
     };
 
