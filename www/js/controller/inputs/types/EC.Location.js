@@ -45,8 +45,6 @@ EC.InputTypes = (function (module) {
 
         function _showAcquiredLocation() {
 
-            //clearAllRequests();
-
             $(accuracy_result).find('span').text(Math.floor(location.accuracy));
             $(accuracy_result).removeClass('not-shown');
             $(accuracy_tip).removeClass('not-shown');
@@ -66,7 +64,6 @@ EC.InputTypes = (function (module) {
                 EC.Notification.showToast(EC.Localise.getTranslation('location_acquired'), 'short');
             }
             set_location_btn.one('vclick', _getLocation);
-
 
         }
 
@@ -174,7 +171,7 @@ EC.InputTypes = (function (module) {
             console.log(JSON.stringify(error));
 
             if (error.code === 3) {
-                //EC.Notification.showAlert(EC.Localise.getTranslation('error'), error.message + EC.Localise.getTranslation('location_fail'));
+                EC.Notification.showAlert(EC.Localise.getTranslation('error'), error.message + EC.Localise.getTranslation('location_fail'));
                 window.navigator.geolocation.clearWatch(geolocation_request);
                 EC.Notification.hideProgressDialog();
 
