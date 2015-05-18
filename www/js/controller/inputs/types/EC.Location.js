@@ -15,9 +15,6 @@ EC.InputTypes = (function (module) {
         var requests = [];
         var geolocation_request;
         var is_first_attempt = true;
-        //set unlimited timeout for watch position to avoid timeout error on iOS when the device does not move
-        // see http://goo.gl/tYsBSC, http://goo.gl/jYQhgr, http://goo.gl/8oR1g2
-        var timeout = (window.device.platform === EC.Const.IOS) ? Infinity : 30000;
 
         //set unlimited timeout for watch position to avoid timeout error on iOS when the device does not move
         // see http://goo.gl/tYsBSC, http://goo.gl/jYQhgr, http://goo.gl/8oR1g2
@@ -54,17 +51,15 @@ EC.InputTypes = (function (module) {
             set_location_result.val(//
                 'Latitude: ' + location.latitude + ',\n' + //
                 'Longitude: ' + location.longitude + ',\n' + //
-                'Altitude: ' + location.altitude + ',\n' + //
-                'Accuracy: ' + location.accuracy + ',\n' + //
-                'Altitude Accuracy: ' + location.altitude_accuracy + ',\n' + //
-                'Bearing: ' + location.heading + '\n');
-            //
+                'Altitude: ' + Math.floor(location.altitude) + ',\n' + //
+                'Accuracy: ' + Math.floor(location.accuracy) + ',\n' + //
+                'Altitude Accuracy: ' + Math.floor(location.altitude_accuracy) + ',\n' + //
+                'Bearing: ' + isNaN(location.heading) ? '' : location.heading + '\n');
 
             if (!EC.Utils.isChrome()) {
                 EC.Notification.showToast(EC.Localise.getTranslation('location_acquired'), 'short');
             }
             set_location_btn.one('vclick', _getLocation);
-
         }
 
         //request position
@@ -172,8 +167,6 @@ EC.InputTypes = (function (module) {
 
             if (error.code === 3) {
                 EC.Notification.showAlert(EC.Localise.getTranslation('error'), error.message + EC.Localise.getTranslation('location_fail'));
-                window.navigator.geolocation.clearWatch(geolocation_request);
-                EC.Notification.hideProgressDialog();
 
             } else if (error.code === 1) {
 
