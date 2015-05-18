@@ -19,10 +19,6 @@ EC.InputTypes = (function (module) {
         // see http://goo.gl/tYsBSC, http://goo.gl/jYQhgr, http://goo.gl/8oR1g2
         var timeout = (window.device.platform === EC.Const.IOS) ? Infinity : 30000;
 
-        //set unlimited timeout for watch position to avoid timeout error on iOS when the device does not move
-        // see http://goo.gl/tYsBSC, http://goo.gl/jYQhgr, http://goo.gl/8oR1g2
-        var timeout = (window.device.platform === EC.Const.IOS) ? Infinity : 30000;
-
         //update label text
         span_label.text(input.label);
 

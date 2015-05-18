@@ -14,3 +14,7 @@ plugins/
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
 .idea/workspace.xml
+www/js/controller/inputs/types/EC.Location.js.BACKUP.50825.js
+www/js/controller/inputs/types/EC.Location.js.BASE.50825.js
+www/js/controller/inputs/types/EC.Location.js.LOCAL.50825.js
+www/js/controller/inputs/types/EC.Location.js.REMOTE.50825.js
