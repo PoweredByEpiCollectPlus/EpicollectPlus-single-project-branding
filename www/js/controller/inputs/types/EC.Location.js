@@ -39,6 +39,12 @@ EC.InputTypes = (function (module) {
         //set previous location value if any
         set_location_result.val(value);
 
+        if (value !== '') {
+            $(accuracy_result).find('span').text(Math.floor(EC.Utils.parseLocationString(value).Accuracy));
+            $(accuracy_result).removeClass('not-shown');
+            $(accuracy_tip).removeClass('not-shown');
+        }
+
         function _showAcquiredLocation() {
 
             $(accuracy_result).find('span').text(Math.floor(location.accuracy));
@@ -53,7 +59,7 @@ EC.InputTypes = (function (module) {
                 'Altitude: ' + Math.floor(location.altitude) + ',\n' + //
                 'Accuracy: ' + Math.floor(location.accuracy) + ',\n' + //
                 'Altitude Accuracy: ' + Math.floor(location.altitude_accuracy) + ',\n' + //
-                'Bearing: ' + isNaN(location.heading) ? '' : location.heading + '\n');
+                'Bearing: ' + (isNaN(location.heading) ? '' : location.heading) + '\n');
 
             if (!EC.Utils.isChrome()) {
                 EC.Notification.showToast(EC.Localise.getTranslation('location_acquired'), 'short');
