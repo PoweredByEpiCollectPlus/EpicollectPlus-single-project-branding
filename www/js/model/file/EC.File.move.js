@@ -158,7 +158,7 @@ EC.File = (function (module) {
 
                     //get app private dir (Android) requested subfolder (destination: images, audios,
                     // videos)
-                    window.resolveLocalFileSystemURL(EC.Const.ANDROID_APP_PRIVATE_URI + destination, onLFSSuccess, onLFSError);
+                    window.resolveLocalFileSystemURL(cordova.file.applicationStorageDirectory + destination, onLFSSuccess, onLFSError);
 
                     function onLFSSuccess(the_parent_dir) {
 

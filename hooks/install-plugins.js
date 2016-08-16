@@ -21,7 +21,7 @@ var pluginlist = [
 // Official SQLite plugin
     'cordova-sqlite-storage',
 // App preferences
-    'https://github.com/apla/me.apla.cordova.app-preferences.git', //
+    'cordova-plugin-app-preferences', //
 //Toast plugin
     'https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git',
 //Activity indicator

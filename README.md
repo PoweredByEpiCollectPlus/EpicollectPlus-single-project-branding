@@ -8,12 +8,12 @@ The app will neeed to be signed with a proper valid certificate for distribution
 The project to be used can be create on <a href="http://plus.epicollect.net/">Epicollect+</a> server and downloaded locally
 
 ## Dependencies
-- Cordova CLI 5.0 resolving to Cordova 3.8 on iOS and Cordova 4.0.0 on Android
+- Tested with Cordova 6.1.1, resolving to Android 5.1.1 and iOS 4.1.0
 - jQuery Mobile 1.3.2
  
 ## Platforms supported
- - Android 4.1+ (Jelly Bean, released in July 2012)
- - iOS 7+ (Released in September 2013)
+ - Android 4.4+ (Kitkat)
+ - iOS 8+ 
 
 ## Installation 
 
@@ -21,13 +21,10 @@ The project to be used can be create on <a href="http://plus.epicollect.net/">Ep
 Clone repo (png resources were added manually using `git add res/ios/*.png -f`)
 
 ####
-Add Android using Cordova CLI `cordova platform add android` adn iOS `cordova platform add ios`
+Add Android using Cordova CLI `cordova platform add android` adn iOS `cordova platform add ios` 
 
 ####
 Plugins dependencies are added automatically via Cordova hooks when adding Android (see `hooks` folder)
-
-####
-Copy `res/android/` files to proper folder under `platform/android`
 
 ####
 Run `cordova prepare` to copy file per each platform
@@ -38,6 +35,25 @@ In `res/graphics/sources` the are the source files to create the icons and logo 
 
 ####
 Modify config.xml to add the custom app details like name, package name etc...
+```
+<?xml version='1.0' encoding='utf-8'?>
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        id="net.application.my" //change this
+        version="1.0.0"
+        xmlns="http://www.w3.org/ns/widgets">
+    <name>
+        App Name //change this
+    </name>
+    <description>
+        App Description //change this
+    </description>
+    ...
+    ...
+
+```
+
+###
+Replace the content of `/www/xml/project.xml` with the xml of the project you created on plus.epicollect.net
 
 ####
 Run on device `cordova run android --device` (device attached via usb and usb debugging on)

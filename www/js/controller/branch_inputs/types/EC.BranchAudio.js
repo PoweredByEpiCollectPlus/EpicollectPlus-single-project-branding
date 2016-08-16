@@ -60,7 +60,7 @@ EC.BranchInputTypes = (function (module) {
                 // platform)
                 switch (window.device.platform) {
                     case EC.Const.ANDROID:
-                        audio_full_path_uri = EC.Const.ANDROID_APP_PRIVATE_URI + EC.Const.AUDIO_DIR + window.localStorage.project_name + '/' + value.stored;
+                        audio_full_path_uri = cordova.file.applicationStorageDirectory + EC.Const.AUDIO_DIR + window.localStorage.project_name + '/' + value.stored;
                         break;
                     case EC.Const.IOS:
                         audio_full_path_uri = EC.Const.IOS_APP_PRIVATE_URI + EC.Const.AUDIO_DIR + window.localStorage.project_name + '/' + value.stored;
