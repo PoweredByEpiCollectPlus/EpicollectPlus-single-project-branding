@@ -33,12 +33,6 @@ Copy `res/android/` files to proper folder under `platform/android`
 Run `cordova prepare` to copy file per each platform
 
 ####
-Open project in Android Studio (Android) or Xcode (iOS)
-
-####
-Fix deployment info, Java import ect. if needed
-
-####
 Icons and graphics are copied automatically when running `cordova prepare`, so just replace the existing one with the one you want to use.
 In `res/graphics/sources` the are the source files to create the icons and logo  with correct size.
 
@@ -46,7 +40,7 @@ In `res/graphics/sources` the are the source files to create the icons and logo 
 Modify config.xml to add the custom app details like name, package name etc...
 
 ####
-Run on device
+Run on device `cordova run android --device` (device attached via usb and usb debugging on)
 
 ####
 Look for log errors about missing plugins and fix (I am looking into this...)

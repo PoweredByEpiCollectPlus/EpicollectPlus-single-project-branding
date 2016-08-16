@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0"
-        id="net.bestpint.app"
+        id="net.application.my"
         version="1.0.0"
         xmlns="http://www.w3.org/ns/widgets">
     <name>
-        Bestpint
+        App Name
     </name>
     <description>
-        Collect data about beers all around the world
+        App Description
     </description>
     <author
             email="m.menegazzo@imperial.ac.uk"
@@ -85,9 +85,9 @@
                 src="hooks/install-plugins.js"
                 type="after_platform_add"/>
 
-        <hook
-                src="hooks/update_platform_config.js"
-                type="after_prepare"/>
+        <!--<hook-->
+                <!--src="hooks/update_platform_config.js"-->
+                <!--type="after_prepare"/>-->
 
         <!-- Android icons and splash screens -->
         <icon
@@ -122,11 +122,11 @@
         <!-- Min SDK, 4.1+ (Jelly Bean) -->
         <preference
                 name="android-minSdkVersion"
-                value="16"/>
+                value="19"/>
         <!-- Latest SDK-->
         <preference
                 name="android-targetSdkVersion"
-                value="21"/>
+                value="23"/>
         <!-- Force launch mode to always a single instance of the app - note deeplinking will need to be calle when the app is resumed -->
         <preference
                 name="AndroidLaunchMode"

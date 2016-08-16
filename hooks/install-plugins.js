@@ -4,22 +4,22 @@
 // or the URL
 var pluginlist = [
 //native plugins
-    'org.apache.cordova.device', //
-    'org.apache.cordova.device-orientation', //
-    'org.apache.cordova.geolocation', //
-    'org.apache.cordova.network-information', //
-    'org.apache.cordova.camera', //
-    'org.apache.cordova.media-capture', //
+    'cordova-plugin-device', //
+    'cordova-plugin-device-orientation', //
+    'cordova-plugin-geolocation', //
+    'cordova-plugin-network-information', //
+    'cordova-plugin-camera', //
+    'cordova-plugin-media-capture', //
 // file plugin is added as a dependency of media-capture!
-    'org.apache.cordova.file-transfer',//
-    'org.apache.cordova.globalization', //
+    'cordova-plugin-file-transfer',//
+    'cordova-plugin-globalization', //
 // Fork of media pugin see README
-    'org.apache.cordova.splashscreen', //
+    'cordova-plugin-splashscreen', //
     'https://github.com/ImperialCollegeLondon/cordova-plugin-media.git',
 //fork of dialogs plugin see README
     'https://github.com/ImperialCollegeLondon/cordova-plugin-dialogs.git',
 // Official SQLite plugin
-    'https://github.com/brodysoft/Cordova-SQLitePlugin.git',
+    'cordova-sqlite-storage',
 // App preferences
     'https://github.com/apla/me.apla.cordova.app-preferences.git', //
 //Toast plugin
@@ -27,17 +27,17 @@ var pluginlist = [
 //Activity indicator
     'https://github.com/Initsogar/cordova-activityindicator',
 //Barcode scanner ZXing
-    'com.phonegap.plugins.barcodescanner',
+    'phonegap-plugin-barcodescanner',
 //App Version
     'https://github.com/mirko77/cordova-plugin-app-version.git', //
 //status bar in ios7
-    'org.apache.cordova.statusbar',
+    'cordova-plugin-statusbar',
 //video player plugin android
     'https://github.com/macdonst/VideoPlayer',
 //diagnostic plugin
     'https://github.com/mablack/cordova-diagnostic-plugin.git',
     //open external links in system browser
-    'org.apache.cordova.inappbrowser',
+    'cordova-plugin-inappbrowser',
 //native date picker for android
     'https://github.com/VitaliiBlagodir/cordova-plugin-datepicker',
 //email plugin
