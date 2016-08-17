@@ -1,7 +1,7 @@
 # Powered By Epicollect+ - Mobile Client
 Epicollect+ Mobile Client HTML5 modified to be a framework for building a branded version with its own graphics and logos and working with a single specified project (loading the xml locally from `www/xml/{project name}.xml`).
 
-The app can have whatever name, just the package name needs to be unique for distribution on the Android Play Store or iOS App Store. 
+The app can have whatever name, just the package name needs to be unique for distribution on the Android Play Store or iOS App Store, or for sideloading to a device (Android only)
 
 The app will neeed to be signed with a proper valid certificate for distribution
 
@@ -10,6 +10,7 @@ The project to be used can be create on <a href="http://plus.epicollect.net/">Ep
 ## Dependencies
 - Tested with Cordova 6.1.1, resolving to Android 5.1.1 and iOS 4.1.0
 - jQuery Mobile 1.3.2
+- Android SDK or Xcode
  
 ## Platforms supported
  - Android 4.4+ (Kitkat)
@@ -30,7 +31,7 @@ Plugins dependencies are added automatically via Cordova hooks when adding Andro
 Run `cordova prepare` to copy file per each platform
 
 ####
-Icons and graphics are copied automatically when running `cordova prepare`, so just replace the existing one with the one you want to use.
+Icons and graphics are copied automatically when running `cordova prepare`, so just replace the existing ones with the onse you want to use.
 In `res/graphics/sources` the are the source files to create the icons and logo  with correct size.
 
 ####
