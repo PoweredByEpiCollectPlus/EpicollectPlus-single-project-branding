@@ -19,7 +19,7 @@ The project to be used can be create on <a href="http://plus.epicollect.net/">Ep
 ## Installation 
 
 #### 
-Clone repo (png resources were added manually using `git add res/ios/*.png -f`)
+Clone repo, cd into your project folder
 
 ####
 Add Android using Cordova CLI `cordova platform add android` adn iOS `cordova platform add ios` 
@@ -43,7 +43,7 @@ Modify config.xml to add the custom app details like name, package name etc...
         version="1.0.0"
         xmlns="http://www.w3.org/ns/widgets">
     <name>
-        App Name //change this
+        AppName //change this (no spaces if you are building for iOS)
     </name>
     <description>
         App Description //change this
