@@ -16,8 +16,7 @@ var pluginlist = [
 // Fork of media pugin see README
     'cordova-plugin-splashscreen', //
     'https://github.com/ImperialCollegeLondon/cordova-plugin-media.git',
-//fork of dialogs plugin see README
-    'https://github.com/ImperialCollegeLondon/cordova-plugin-dialogs.git',
+    'cordova-plugin-dialogs',
 // Official SQLite plugin
     'cordova-sqlite-storage',
 // App preferences
