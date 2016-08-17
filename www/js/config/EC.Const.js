@@ -14,11 +14,11 @@ EC.Const = (function () {
         //platforms
         ANDROID: 'Android',
         IOS: 'iOS',
-        ANDROID_ASSETS_ABS_PATH: 'file:///android_asset/www/',
-        IOS_ASSETS_ABS_PATH: 'Bestpint.app/www/',
+        ANDROID_ASSETS_ABS_PATH: '',
+        IOS_ASSETS_ABS_PATH: '',
 
         //file paths
-        ANDROID_APP_PRIVATE_URI: 'file:///data/data/net.bestpint.app',
+        ANDROID_APP_PRIVATE_URI: '', //set at run time, file:///data/data/<app-id>/
         IOS_APP_PRIVATE_URI: '', //set at run time, it is the Documents folder
         // folder
 

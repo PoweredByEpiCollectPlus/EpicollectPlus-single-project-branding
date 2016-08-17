@@ -21,17 +21,11 @@ EC.Boot.getProjects = function () {
             console.log(typeof value);
             console.log(value);
 
-            if (window.device.platform === EC.Const.IOS) {
-
-                if (typeof value === 'object') {
-                    deferred.resolve(false);
-                }
-                else {
-                    deferred.resolve(true);
-                }
+            //if the value is n object, then the flag was not set
+            if (typeof value === 'object') {
+                deferred.resolve(false);
             }
             else {
-                //database is set
                 deferred.resolve(true);
             }
         }
@@ -47,8 +41,13 @@ EC.Boot.getProjects = function () {
         return deferred.promise();
     }
 
+    console.log('checking if db is set');
+
 //check if database is set already
     $.when(_isDBSet()).then(function (response) {
+
+        console.log('do I hit here?');
+        console.log(response);
 
         if (response) {
             //if db already set, just list projects
@@ -60,6 +59,8 @@ EC.Boot.getProjects = function () {
 
             //Initialise database BEFORE creating project
             $.when(EC.DBAdapter.init()).then(function () {
+
+                console.log('EC.DBAdapter.init() callback');
 
                 //generate project from local project xml ('www/xml/<project_name>.xml')
                 $.when(EC.Boot.createSingleProject()).then(function () {

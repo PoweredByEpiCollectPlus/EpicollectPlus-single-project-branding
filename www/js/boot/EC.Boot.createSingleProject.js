@@ -7,7 +7,7 @@ EC.Boot.createSingleProject = function () {
 
     var deferred = new $.Deferred();
     //todo path should be the app name (lowercase) we get at run time
-    var project_xml_URL = 'xml/bestpint.xml';
+    var project_xml_URL = 'xml/project.xml';
 
     //add flag to detect a local request from iOS to  mak ethe ajax request work (see EC.Project.request for details)
     var is_local_ios_request = (window.device.platform === EC.Const.IOS) ? true : false;
@@ -27,4 +27,4 @@ EC.Boot.createSingleProject = function () {
     });
 
     return deferred.promise();
-}
+};

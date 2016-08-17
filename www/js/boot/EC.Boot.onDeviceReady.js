@@ -24,7 +24,6 @@ EC.Boot.onDeviceReady = function () {
 
             //create media folders 'images', 'audios', 'videos'
             $.when(EC.File.createMediaDirs()).then(function () {
-
                 //set iOS app root path at run time as app identifier can change
                 EC.Utils.setIOSRootPath();
 
@@ -34,6 +33,10 @@ EC.Boot.onDeviceReady = function () {
         }
 
         if (window.device.platform === EC.Const.ANDROID) {
+
+            EC.Const.ANDROID_ASSETS_ABS_PATH = cordova.file.applicationDirectory + 'www/';
+            //file paths
+            EC.Const.ANDROID_APP_PRIVATE_URI = cordova.file.applicationStorageDirectory; //set at run time, file:///data/data/<app-id>/
 
             //create Android media folders
             $.when(EC.File.createMediaDirs()).then(function () {
